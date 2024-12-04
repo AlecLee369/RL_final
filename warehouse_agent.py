@@ -34,7 +34,7 @@ class warehouse_agent:
         self.W = W
 
     # generate item that need to be delivered, sort terminal states the agent need to visit based on their distance to [0, 0] where the agent start,
-    # return sorted terminal states
+    # return sorted terminal states and their sequency
     def generate_items(self, num_items):
         if num_items > self.num_aisles:
             print(f'bad number items, make it <= {self.num_aisles}')
@@ -42,9 +42,9 @@ class warehouse_agent:
         random_numbers = np.random.choice(np.arange(0, self.num_aisles, 1), size=num_items, replace=False)
         items_terminal_states = self.terminal_states[random_numbers]
         sequence = np.argsort(np.linalg.norm(items_terminal_states, axis=1))
-        return items_terminal_states[sequence]
+        return items_terminal_states[sequence], np.sort(random_numbers)
     
 if __name__ == '__main__':
     agent = warehouse_agent(2, 3)
-    agent.generate_items(3)
+    agent.generate_items(4)
 
