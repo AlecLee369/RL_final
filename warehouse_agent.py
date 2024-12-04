@@ -38,7 +38,7 @@ class warehouse_agent:
     def generate_items(self, num_items):
         if num_items > self.num_aisles:
             print(f'bad number items, make it <= {self.num_aisles}')
-            return
+            return None
         random_numbers = np.random.choice(np.arange(0, self.num_aisles, 1), size=num_items, replace=False)
         items_terminal_states = self.terminal_states[random_numbers]
         sequence = np.argsort(np.linalg.norm(items_terminal_states, axis=1))
