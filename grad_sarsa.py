@@ -30,7 +30,7 @@ class SemiGradNStepSarsa(warehouse_agent):
         while True:
             x = int(np.random.uniform(0, self.H))
             y = int(np.random.uniform(0, self.W))
-            if x != terminate_x and y != terminate_y:
+            if x != terminate_x or y != terminate_y:
                 return x, y
 
     def estimate_q_value(self, x, y, a):
