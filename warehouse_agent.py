@@ -6,7 +6,7 @@ class warehouse_agent:
         # Action = ['Up' 0, 'Right' 1, 'Down' 2, 'Left' 3], clockwise
         self.A = np.array([0, 1, 2, 3])
         # Transition function
-        self.P = [0.7, 0.12, 0.12, 0.06]
+        self.P = np.array([0.7, 0.82, 0.94, 1])
         self.reward = None
         self.terminal_states = None
         self.policies = None
@@ -17,7 +17,7 @@ class warehouse_agent:
 
     # def generate_environment(self, rows, columns)
         # initial gridworld
-        H = 3 * (rows + 1)
+        H = 3 * rows + rows + 1
         W = 3 * columns + 2
         reward = -np.ones((H, W))
         reward[:, np.arange(1, W-3, 3)] = -9
@@ -45,6 +45,6 @@ class warehouse_agent:
         return items_terminal_states[sequence], np.sort(random_numbers)
     
 if __name__ == '__main__':
-    agent = warehouse_agent(2, 3)
-    agent.generate_items(4)
+    agent = warehouse_agent(1, 1)
+    print(agent.reward)
 
